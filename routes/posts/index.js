@@ -5,15 +5,14 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', async (req, res) => {
-  const posts = await Post.find()
+  const posts = await Post.find().populate('author', 'email')
   res.send(posts)
 })
 
 router.post('/', authMiddleware, async (req, res, next) => {
-  const user = await User.findById(req.user._id).select('-password')
   const postData = {
     ...req.body,
-    author: user
+    author: req.user._id
   }
 
   const { error } = validate(postData)
