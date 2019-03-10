@@ -1,7 +1,5 @@
 const { Post, validate } = require('../../models/post')
-const { User } = require('../../models/user')
 const Fawn = require('fawn')
-const mongoose = require('mongoose')
 const authMiddleware = require('../../middlewares/auth')
 const express = require('express')
 const router = express.Router()
