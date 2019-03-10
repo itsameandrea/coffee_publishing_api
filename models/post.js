@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Joi = require('joi')
 
-const Post = mongoose.model('Post', new mongoose.Schema({
+const postSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -20,7 +20,9 @@ const Post = mongoose.model('Post', new mongoose.Schema({
     ref: 'User',
     required: true
   }
-}))
+})
+
+const Post = mongoose.model('Post', postSchema)
 
 const validatePost = (post) => {
   const schema = {
@@ -33,4 +35,5 @@ const validatePost = (post) => {
 }
 
 exports.Post = Post
+exports.postSchema = postSchema
 exports.validate = validatePost

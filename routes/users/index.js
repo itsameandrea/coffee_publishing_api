@@ -5,7 +5,7 @@ const router = express.Router()
 const bcrypt = require('bcrypt')
 
 router.get('/me', authMiddleware, async (req, res) => {
-  const user = await User.findById(req.user._id).select('-password')
+  const user = await User.findById(req.user._id).populate('posts', 'title').select('-password')
   res.send(user)
 })
 
